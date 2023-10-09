@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/Home"
+        android:title="Trang chủ"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/icon_home"/>
+    <item android:id="@+id/Search"
+        android:title="Tìm kiếm"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/icon_search"/>
+    <item android:id="@+id/Lib"
+        android:title="Thư viện"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/icon_list"/>
+</menu>

@@ -27,14 +27,15 @@
                 android:textColor="@color/white"
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"/>
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="50dp"-->
-<!--                android:text="Danh sách phát"-->
-<!--                android:textSize="13dp"-->
-<!--                android:gravity="top"-->
-<!--                android:paddingStart="10dp"-->
-<!--                />-->
+           <TextView
+               android:id="@+id/tv_name_cate"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Danh sách phát"
+                android:textSize="13dp"
+                android:gravity="top"
+                android:paddingStart="10dp"
+                />
         </LinearLayout>
 
 
