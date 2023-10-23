@@ -1,4 +1,4 @@
-package com.landz.android;
+package com.landz.android.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import com.landz.android.R;
 
 import java.util.ArrayList;
 
