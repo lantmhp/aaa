@@ -15,21 +15,19 @@ import com.landz.android.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.LibViewHolder>{
+public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.LibViewHolder> {
 
 
     private List<library> mLibraries;
-    public LibraryAdapter(List<library> mLibraries) {this.mLibraries = mLibraries;}
 
-    public void setFillteredList(List<library> fillteredList) {
-        this.mLibraries = fillteredList;
-        notifyDataSetChanged();
+    public LibraryAdapter(List<library> mLibraries) {
+        this.mLibraries = mLibraries;
     }
 
     @NonNull
     @Override
     public LibViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cat_lib, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cat_lib, parent, false);
         return new LibViewHolder(view);
 
     }
@@ -37,9 +35,6 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.LibViewH
     @Override
     public void onBindViewHolder(@NonNull LibViewHolder holder, int position) {
         library library = mLibraries.get(position);
-        if (library == null){
-            return;
-        }
 
         holder.imgLib.setImageResource(library.getImgLib());
         holder.tvNameLib.setText(library.getNameLib());
@@ -48,13 +43,10 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.LibViewH
 
     @Override
     public int getItemCount() {
-        if (mLibraries != null){
-            return mLibraries.size();
-        }
         return mLibraries.size();
     }
 
-    public class LibViewHolder extends RecyclerView.ViewHolder{
+    public static class LibViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView imgLib;
         private TextView tvNameLib;

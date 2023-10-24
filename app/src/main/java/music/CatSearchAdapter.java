@@ -12,7 +12,7 @@ import com.landz.android.R;
 
 import java.util.List;
 
-public class CatSearchAdapter extends RecyclerView.Adapter<CatSearchAdapter.CatSearchViewHolder>{
+public class CatSearchAdapter extends RecyclerView.Adapter<CatSearchAdapter.CatSearchViewHolder> {
 
     private List<CatSearch> mListCatSearches;
 
@@ -30,24 +30,19 @@ public class CatSearchAdapter extends RecyclerView.Adapter<CatSearchAdapter.CatS
     @Override
     public void onBindViewHolder(@NonNull CatSearchViewHolder holder, int position) {
         CatSearch CatSearch = mListCatSearches.get(position);
-        if(CatSearch == null){
-            return;
-        }
-
         holder.imgSearch.setImageResource(CatSearch.getImgSearch());
     }
 
     @Override
     public int getItemCount() {
-        if(mListCatSearches != null){
-            return mListCatSearches.size();
-        }
-        return 0;
+
+        return mListCatSearches.size();
     }
 
-    public class CatSearchViewHolder extends RecyclerView.ViewHolder{
+    public class CatSearchViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView imgSearch;
+
         public CatSearchViewHolder(@NonNull View itemView) {
             super(itemView);
             imgSearch = itemView.findViewById(R.id.img_item_searchView);
