@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class play_music extends AppCompatActivity {
 
-    ImageView play,prev,next,imageView;
+    ImageView play, prev, next, imageView;
     TextView songTile;
     SeekBar mSeekBarTime, mSeekBarVol;
     static MediaPlayer mediaPlayer;
@@ -25,6 +25,7 @@ public class play_music extends AppCompatActivity {
     private MediaController mediaController;
     private AudioManager manager;
     int currentIndex = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,24 +37,21 @@ public class play_music extends AppCompatActivity {
         mSeekBarVol = findViewById(R.id.seekbarVol);
 
         ArrayList<Integer> songs = new ArrayList<>();
-        songs.add(0,R.raw.sontung1);
-        songs.add(1,R.raw.coChacYeuLaDay);
-        songs.add(2,R.raw.fashionTanGai);
-        songs.add(3,R.raw.hayTraoChoAnh);
-        songs.add(4,R.raw.luonYeuDoi);
-        songs.add(5,R.raw.noiNayCoAnh);
+//        songs.add(0,R.raw.sontung1);
+//        songs.add(1,R.raw.coChacYeuLaDay);
+//        songs.add(2,R.raw.fashionTanGai);
+//        songs.add(3,R.raw.hayTraoChoAnh);
+//        songs.add(4,R.raw.luonYeuDoi);
+//        songs.add(5,R.raw.noiNayCoAnh);
 
         mediaPlayer = MediaPlayer.create(getApplicationContext(), songs.get(currentIndex));
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mediaPlayer!=null &&mediaPlayer.isPlaying())
-                {
+                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
                     mediaPlayer.pause();
-                }
-                else
-                {
+                } else {
                     mediaPlayer.start();
                     play.setImageResource(R.drawable.ic_pause_24);
                 }
@@ -62,17 +60,13 @@ public class play_music extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mediaPlayer!=null)
-                {
+                if (mediaPlayer != null) {
                     play.setImageResource(R.drawable.ic_pause_24);
                 }
-                if (currentIndex <songs.size()-1)
-                {
+                if (currentIndex < songs.size() - 1) {
                     currentIndex++;
-                }
-                else currentIndex = 0;
-                if (mediaPlayer.isPlaying())
-                {
+                } else currentIndex = 0;
+                if (mediaPlayer.isPlaying()) {
                     mediaPlayer.stop();
                 }
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), songs.get(currentIndex));
@@ -82,16 +76,13 @@ public class play_music extends AppCompatActivity {
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mediaPlayer!=null){
+                if (mediaPlayer != null) {
                     play.setImageResource(R.drawable.ic_pause_24);
                 }
-                if (currentIndex >0)
-                {
+                if (currentIndex > 0) {
                     currentIndex--;
-                }
-                else currentIndex = songs.size() -1;
-                if (mediaPlayer.isPlaying())
-                {
+                } else currentIndex = songs.size() - 1;
+                if (mediaPlayer.isPlaying()) {
                     mediaPlayer.stop();
                 }
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), songs.get(currentIndex));
@@ -99,34 +90,29 @@ public class play_music extends AppCompatActivity {
             }
         });
     }
+
     private void SongNames() {
-        if (currentIndex == 0)
-        {
+        if (currentIndex == 0) {
             songTile.setText("Chung ta khong thuoc ve nhau - Son Tung MTP");
             imageView.setImageResource((R.drawable.chungtakothuocvenhau));
         }
-        if (currentIndex == 1)
-        {
+        if (currentIndex == 1) {
             songTile.setText("Co chac yeu la day - Son Tung MTP");
             imageView.setImageResource((R.drawable.chungtakothuocvenhau));
         }
-        if (currentIndex == 2)
-        {
+        if (currentIndex == 2) {
             songTile.setText("Fashion tan gai - LowG");
             imageView.setImageResource((R.drawable.chungtakothuocvenhau));
         }
-        if (currentIndex == 3)
-        {
+        if (currentIndex == 3) {
             songTile.setText("Hay trao cho anh - Son Tung MTP");
             imageView.setImageResource((R.drawable.chungtakothuocvenhau));
         }
-        if (currentIndex == 4)
-        {
+        if (currentIndex == 4) {
             songTile.setText("Luon yeu doi - LowG");
             imageView.setImageResource((R.drawable.chungtakothuocvenhau));
         }
-        if (currentIndex == 5)
-        {
+        if (currentIndex == 5) {
             songTile.setText("Noi nay co anh - Son Tung MTP");
             imageView.setImageResource((R.drawable.chungtakothuocvenhau));
         }

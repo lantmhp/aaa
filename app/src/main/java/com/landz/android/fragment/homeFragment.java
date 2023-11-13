@@ -1,5 +1,6 @@
 package com.landz.android.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import com.landz.android.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import music.CatAlbum;
 import music.CatAlbumAdapter;
 import music.CatSearch;
 import music.CatSearchAdapter;
@@ -31,9 +33,11 @@ import music.library;
 public class homeFragment extends Fragment {
     View view;
 
-    RecyclerView rcvCatAlbum;
-    private List<album> albumList;
-    private albumAdapter albumAdapter;
+    private List<CatAlbum> albumCatList;
+    private RecyclerView rvcListAlbum;
+    private CatAlbumAdapter CatAlbumAdapter;
+
+    Context context;
 
     public homeFragment() {
         // Required empty public constructor
@@ -46,24 +50,36 @@ public class homeFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        albumList = getListAlbum();
-        rcvCatAlbum = view.findViewById(R.id.rcv_CatALbum);
-        rcvCatAlbum.setLayoutManager(new LinearLayoutManager(getActivity()));
-        albumAdapter = new albumAdapter(albumList);
-        rcvCatAlbum.setAdapter(albumAdapter);
+        albumCatList = getLisCatAlbum();
+        rvcListAlbum = view.findViewById(R.id.rcv_CatALbum);
+
+        rvcListAlbum.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        CatAlbumAdapter = new CatAlbumAdapter(this);
+        rvcListAlbum.setAdapter(CatAlbumAdapter);
         return view;
     }
 
-    private List<album> getListAlbum() {
-        List<album> list = new ArrayList<>();
-        list.add(new album(R.drawable.img_heart, "Bài hát ưa thích"));
-        list.add(new album(R.drawable.img_artist_1, "Sơn Tùng M-TP"));
-        list.add(new album(R.drawable.img_artist_2, "Low G"));
-        list.add(new album(R.drawable.img_artist_3, "Taylor Swift"));
-        list.add(new album(R.drawable.img_heart, "Bài hát ưa thích"));
-        list.add(new album(R.drawable.img_heart, "Bài hát ưa thích"));
+    private List<CatAlbum> getLisCatAlbum() {
+        List<CatAlbum> listCat = new ArrayList<>();
+        List<album> listAlbum1 = new ArrayList<>();
+        listAlbum1.add(new album(R.drawable.img_album_1, "Album 1"));
+        listAlbum1.add(new album(R.drawable.img_album_2, "Album 2"));
+        listAlbum1.add(new album(R.drawable.img_album_3, "Album 3"));
+        listAlbum1.add(new album(R.drawable.img_album_4, "Album 4"));
 
-        return list;
+        List<album> listAlbum2 = new ArrayList<>();
+        listAlbum2.add(new album(R.drawable.img_album_5, "Album 1"));
+        listAlbum2.add(new album(R.drawable.img_album_6, "Album 2"));
+        listAlbum2.add(new album(R.drawable.img_album_7, "Album 3"));
+        listAlbum2.add(new album(R.drawable.img_album_8, "Album 4"));
+
+        listCat.add(new CatAlbum("Dành cho bạn", listAlbum1));
+        listCat.add(new CatAlbum("Radio phổ biến", listAlbum2));
+        listCat.add(new CatAlbum("Lựa chọn của spotify", listAlbum1));
+        listCat.add(new CatAlbum("Tuyển tập hàng đầu của bạn", listAlbum2));
+        listCat.add(new CatAlbum("Đài phát gợi ý", listAlbum1));
+        listCat.add(new CatAlbum("Hoài niệm", listAlbum2));
+        return listCat;
     }
 
 }

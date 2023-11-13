@@ -22,6 +22,7 @@ public class search extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<library> mLibraries;
     private LibraryAdapter libraryAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,22 +54,21 @@ public class search extends AppCompatActivity {
         mLibraries.add(new library(R.drawable.img_artist_3, "Taylor Swift", "jfdh"));
         mLibraries.add(new library(R.drawable.img_heart, "Bài hát ưa thích", "sd"));
         mLibraries.add(new library(R.drawable.img_heart, "Bài hát ưa thích", "mdmg"));
-        
+
 
     }
 
     private void filterList(String text) {
         List<library> fillteredList = new ArrayList<>();
-        for(library library : mLibraries){
-            if(library.getNameLib().toLowerCase().contains(text.toLowerCase())){
+        for (library library : mLibraries) {
+            if (library.getNameLib().toLowerCase().contains(text.toLowerCase())) {
                 fillteredList.add(library);
             }
         }
-        if(fillteredList.isEmpty()){
+        if (fillteredList.isEmpty()) {
             Toast.makeText(this, "No data found", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            libraryAdapter.setFillteredList(fillteredList);
+        } else {
+
         }
     }
 }
