@@ -16,14 +16,13 @@ import android.widget.Button;
 import com.landz.android.activity.MainActivity;
 import com.landz.android.R;
 import com.landz.android.activity.search;
+import com.landz.android.database.Database;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import music.CatSearch;
-import music.CatSearchAdapter;
-import music.LibraryAdapter;
-import music.library;
+import Model.album;
+import Model.albumAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,9 +32,6 @@ public class searchFragment extends Fragment {
     View view;
     Button btnSearch;
 
-    RecyclerView rcvCatSearch;
-    private List<CatSearch> searchList;
-    private CatSearchAdapter searchAdapter;
 
     public searchFragment() {
         // Required empty public constructor
@@ -57,31 +53,17 @@ public class searchFragment extends Fragment {
             }
         });
 
-        searchList = getListSearch();
-        rcvCatSearch = view.findViewById(R.id.rcv_CatSearch);
-        rcvCatSearch.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        searchAdapter = new CatSearchAdapter(searchList);
-        rcvCatSearch.setAdapter(searchAdapter);
+        Database db = new Database(getActivity());
+        ArrayList<album> albums = db.getAllAlbum();
+        RecyclerView rcv = view.findViewById(R.id.rcv_album);
+
+        albumAdapter adapter = new albumAdapter(albums);
+        rcv.setAdapter(adapter);
+        rcv.hasFixedSize();
+        rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return view;
 
     }
 
-    private List<CatSearch> getListSearch() {
-        List<CatSearch> list = new ArrayList<>();
-        list.add(new CatSearch(R.drawable.img_podcast));
-        list.add(new CatSearch(R.drawable.img_podcast));
-        list.add(new CatSearch(R.drawable.img_podcast));
-        list.add(new CatSearch(R.drawable.img_podcast));
-        list.add(new CatSearch(R.drawable.img_podcast));
-        list.add(new CatSearch(R.drawable.img_podcast));
-        list.add(new CatSearch(R.drawable.img_podcast));
-        list.add(new CatSearch(R.drawable.img_podcast));
-        list.add(new CatSearch(R.drawable.img_podcast));
-        list.add(new CatSearch(R.drawable.img_podcast));
-        list.add(new CatSearch(R.drawable.img_podcast));
-        list.add(new CatSearch(R.drawable.img_podcast));
-
-        return list;
-    }
 }

@@ -4,38 +4,32 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-
-import android.widget.Button;
 import android.widget.Toast;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.landz.android.R;
-import com.landz.android.fragment.ViewPager2Adapter;
 import com.landz.android.fragment.homeFragment;
 import com.landz.android.fragment.libFragment;
 import com.landz.android.fragment.searchFragment;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
-
-import music.CatAlbumAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    String DB_PATH_SUFFIX = "/databases/";
+    String DATABASE_NAME="music.db";
     ViewPager2 fragment;
     ArrayList<Fragment> fragmentArrayList = new ArrayList<>();
     BottomNavigationView bt_nav;
@@ -46,22 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-//        DatabaseReference databaseReference = firebaseDatabase.getReferenceFromUrl("https://musicapp-fa97c-default-rtdb.firebaseio.com/");
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                DataSnapshot snapshot1 = snapshot.child("name");
-//                String value = snapshot1.getValue(String.class);
-//                Log.d("aaa", value);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Toast.makeText(MainActivity.this, "Fail to get data", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
+        processCopy();
         fragment = findViewById(R.id.fragment);
         bt_nav = findViewById(R.id.bt_nav);
 
@@ -108,6 +87,53 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+    private void processCopy() {
+        //pri p vate app
+        File dbFile = getDatabasePath(DATABASE_NAME);
+        if (!dbFile.exists())
+        {
+            try{CopyDataBaseFromAsset();
+                Toast.makeText(this, "Copying sucess from Assets folder", Toast.LENGTH_LONG).show();
+            }
+            catch (Exception e){
+                Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
+            }
+        }
+
+    }
+    private String getDatabasePath() {
+        return getApplicationInfo().dataDir + DB_PATH_SUFFIX+ DATABASE_NAME;
+    }
+
+    public void CopyDataBaseFromAsset() {
+        // TODO Auto-generated method stub
+        try {
+            InputStream myInput;
+            myInput = getAssets().open(DATABASE_NAME);
+            // Path to the just created empty db
+            String outFileName = getDatabasePath();
+            // if the path doesn't exist first, create it
+            File f = new File(getApplicationInfo().dataDir + DB_PATH_SUFFIX);
+            if (!f.exists())
+                f.mkdir();
+            // Open the empty db as the output stream
+            OutputStream myOutput = new FileOutputStream(outFileName);
+            // transfer bytes from the inputfile to t@he outputfile
+            // Truyền bytes dữ liệu từ input đến output
+            int size = myInput.available();
+            byte[] buffer = new byte[size];
+            myInput.read(buffer);
+            myOutput.write(buffer);
+            // Close the streams
+            myOutput.flush();
+            myOutput.close();
+            myInput.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 }

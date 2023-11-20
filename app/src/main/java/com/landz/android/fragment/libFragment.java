@@ -2,8 +2,6 @@ package com.landz.android.fragment;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,8 +15,8 @@ import com.landz.android.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import music.LibraryAdapter;
-import music.library;
+import Model.LibraryAdapter;
+import Model.library;
 
 /**
  * A simple {@link Fragment} subclass.

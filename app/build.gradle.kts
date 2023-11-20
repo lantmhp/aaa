@@ -5,6 +5,7 @@ plugins {
 android {
     namespace = "com.landz.android"
     compileSdk = 33
+//    buildToolsVersion "33.0.3"
 
     defaultConfig {
         applicationId = "com.landz.android"
