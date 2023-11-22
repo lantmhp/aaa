@@ -2,11 +2,14 @@ package com.landz.android.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import android.graphics.Bitmap;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -14,51 +17,64 @@ import java.io.ByteArrayOutputStream;
 
 public class Database extends SQLiteOpenHelper {
 
-    Context context;
-    private static final String DBNAME = "music.db";
-    private static final String createTableQuery = "Create table LoginUser(userName TEXT" +
-            ",email TEXT" +
-            ",phone TEXT" +
-            ",password TEXT" +
-            ",image BLOB)";
-    private static final int VER = 1;
-
-    private ByteArrayOutputStream byteArrayOutputStream;
-    private byte[] imageInBytes;
-
-    public Database(Context context) {
-        super(context, DBNAME, null, VER);
-        this.context = context;
+    public Database(@Nullable Context context) {
+        super(context, "music.db", null, 2);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(createTableQuery);
-        Toast.makeText(context.getApplicationContext(), "table created successfully", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        db.execSQL("PRAGMA cursor_window = 5000000");
+    }
 
-    public void storeData(ModelClass modelClass) {
+
+    public Boolean insertUser(String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Bitmap imageToStoreBitmap = modelClass.getProfileImage();
 
-        byteArrayOutputStream = new ByteArrayOutputStream();
-        imageToStoreBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        ContentValues cv = new ContentValues();
+        cv.put("USERNAME", username);
+        cv.put("PASSWORD", password);
 
-        imageInBytes = byteArrayOutputStream.toByteArray();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("userName", modelClass.getUserName());
-        contentValues.put("email", modelClass.getEmail());
-        contentValues.put("phone", modelClass.getPhone());
-        contentValues.put("password", modelClass.getPassword());
-        contentValues.put("image", imageInBytes);
+        long result = db.insert("user", null, cv);
+        if(result != -1)
+        {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 
-        long checkIfQueryRun = db.insert("LoginUser", null, contentValues);
-        
+
+
+    public Boolean checkUserName(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE USERNAME = ?", new String[]{username});
+        if (cursor.getCount() > 0){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    public Boolean checkUserNamePass(String username, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE USERNAME = ? AND PASSWORD = ?", new String[]{username, password});
+        if (cursor.getCount() > 0){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 }

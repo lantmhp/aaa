@@ -13,17 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.landz.android.Login;
+import com.landz.android.activity.Login;
 import com.landz.android.R;
 import com.landz.android.database.Database;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import Model.Song;
-import Model.SongAdapter;
-import Model.album;
-import Model.albumAdapter;
+//import Model.album;
+//import Model.albumAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,7 +52,7 @@ public class homeFragment extends Fragment {
             }
         });
         Database db = new Database(getActivity());
-        ArrayList<Song> songs = db.getAllSong();
+//        ArrayList<Song> songs = db.getAllSong();
         RecyclerView rcv = view.findViewById(R.id.rcv_Song);
 
 //        SongAdapter adapter = new SongAdapter(songs);

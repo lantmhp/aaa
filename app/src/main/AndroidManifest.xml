@@ -16,10 +16,10 @@
             android:name=".List_song_in_album"
             android:exported="false" />
         <activity
-            android:name=".signUp"
+            android:name=".activity.signUp"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".activity.Login"
             android:exported="false" />
         <activity
             android:name=".activity.play_music"
