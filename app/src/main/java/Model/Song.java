@@ -1,15 +1,40 @@
 package Model;
 
-public class Song {
+import java.io.File;
+import java.io.Serializable;
+
+public class Song implements Serializable {
     int Song_Id;
     String Song_Title;
     String Song_Artsit;
-    int Duration;
+    String Duration;
     byte[] Song_Image;
+    String path;
+    public Song() {
 
-    public Song(String song_Title, String song_Artsit) {
+    }
+
+    public Song(String song_Title, String song_Artsit, String duration, String path) {
         Song_Title = song_Title;
         Song_Artsit = song_Artsit;
+        Duration = duration;
+        this.path = path;
+    }
+
+    public String getDuration() {
+        return Duration;
+    }
+
+    public void setDuration(String duration) {
+        Duration = duration;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public int getSong_Id() {
@@ -36,13 +61,6 @@ public class Song {
         Song_Title = song_Title;
     }
 
-    public int getDuration() {
-        return Duration;
-    }
-
-    public void setDuration(int duration) {
-        Duration = duration;
-    }
 
     public byte[] getSong_Image() {
         return Song_Image;

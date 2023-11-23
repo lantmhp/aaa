@@ -1,4 +1,4 @@
-package music;
+package Model;
 
 public class library {
     private int imgLib;
