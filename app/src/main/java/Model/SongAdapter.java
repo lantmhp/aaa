@@ -1,9 +1,11 @@
 package Model;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +17,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.landz.android.R;
 import com.landz.android.activity.play_music;
+import com.landz.android.databinding.ItemSongBinding;
+import com.landz.android.detail;
 
+import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder>{
     Context context;
     ArrayList<Song> songs;
-
+    MediaPlayer mediaPlayer = new MediaPlayer();
     public void setSearchList(ArrayList<Song> songs) {
 
         this.songs = songs;
@@ -43,19 +50,28 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
     @Override
     public void onBindViewHolder(@NonNull SongViewHolder holder, int position) {
         Song s = songs.get(position);
-        holder.tvTitle.setText(s.getSong_Title());
-        holder.tvAristSong.setText(s.getSong_Artsit());
+        holder.binding.tvTitle.setText(s.getSong_Title());
+        holder.binding.tvArtistSong.setText(s.getSong_Artsit());
+        holder.binding.tvDuration.setText(s.getDuration());
         Bitmap imageContent = BitmapFactory.decodeByteArray(s.getSong_Image(), 0, s.getSong_Image().length);
-        holder.img.setImageBitmap(imageContent);
-        holder.view.setOnClickListener(new View.OnClickListener() {
+        holder.binding.imgSong.setImageBitmap(imageContent);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, play_music.class);
-//                intent.putExtra("doc", s);
+                intent.putExtra("id", s.getSong_Id());
+                intent.putExtra("title", s.getSong_Title());
+                intent.putExtra("duration", s.getDuration() );
+                intent.putExtra("image", s.getSong_Image());
+                intent.putExtra("data", s.getPath());
+                if (mediaPlayer!=null){
+                    mediaPlayer.stop();
+                }
                 context.startActivity(intent);
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
@@ -63,16 +79,10 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
     }
 
     public class SongViewHolder extends RecyclerView.ViewHolder{
-        public TextView tvTitle;
-        public TextView tvAristSong;
-        public ImageView img;
-        public View view;
+        ItemSongBinding binding;
         public SongViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.view = itemView;
-            this.tvTitle = itemView.findViewById(R.id.tv_title);
-            this.tvAristSong = itemView.findViewById(R.id.tv_artist_song);
-            this.img = itemView.findViewById(R.id.img_song);
+            binding = ItemSongBinding.bind(itemView);
         }
     }
 }
