@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="190dp"
+    android:layout_height="190dp"
+    android:id="@+id/layout_album"
+    app:cardCornerRadius="15dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginStart="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <RelativeLayout
+        android:id="@+id/item_album"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/xam"
+        android:layout_centerHorizontal="true"
+
+        >
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:id="@+id/img_item_album"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:alpha="0.8"
+            android:src="@drawable/img_podcast"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:id="@+id/tv_album"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="aaaaaa"
+            android:layout_below="@id/img_item_album"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true" />
+        <TextView
+            android:id="@+id/tv_artist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="aaaaaa"
+            android:layout_below="@id/tv_album"
+            android:textColor="@color/white"
+            android:textSize="13dp"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

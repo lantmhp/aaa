@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.landz.android.R;
 import com.landz.android.activity.play_music;
 import com.landz.android.databinding.ItemSongBinding;
-import com.landz.android.detail;
 
 import java.sql.Blob;
 import java.util.ArrayList;

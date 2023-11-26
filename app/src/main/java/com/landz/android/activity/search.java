@@ -14,8 +14,8 @@ import com.landz.android.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import music.LibraryAdapter;
-import music.library;
+import Model.LibraryAdapter;
+import Model.library;
 
 public class search extends AppCompatActivity {
     private SearchView searchView;
