@@ -7,12 +7,12 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.landz.android.R;
+import androidx.annotation.NonNull;
+
 import com.landz.android.activity.List_song_in_album;
+import com.landz.android.R;
 import com.landz.android.databinding.ItemAlbumBinding;
 
 import java.util.ArrayList;

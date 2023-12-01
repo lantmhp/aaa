@@ -2,24 +2,24 @@ package com.landz.android.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.landz.android.activity.MainActivity;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.landz.android.R;
+import com.landz.android.activity.MainActivity;
 import com.landz.android.activity.search;
 import com.landz.android.database.Database;
+import com.landz.android.databinding.FragmentSearchBinding;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import Model.album;
 import Model.albumAdapter;
@@ -31,7 +31,7 @@ public class searchFragment extends Fragment {
     MainActivity mainActivity;
     View view;
     Button btnSearch;
-
+    FragmentSearchBinding binding;
 
     public searchFragment() {
         // Required empty public constructor
@@ -52,18 +52,15 @@ public class searchFragment extends Fragment {
 
             }
         });
-
         Database db = new Database(getActivity());
         ArrayList<album> albums = db.getAllAlbum();
         RecyclerView rcv = view.findViewById(R.id.rcv_album);
-
-        albumAdapter adapter = new albumAdapter(albums);
+        albumAdapter adapter = new albumAdapter(getActivity(),albums);
         rcv.setAdapter(adapter);
         rcv.hasFixedSize();
-        rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rcv.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
         return view;
 
     }
-
 }

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,18 +22,13 @@ import com.landz.android.database.Database;
 import java.util.ArrayList;
 
 import Model.Song;
-//import Model.album;
-//import Model.albumAdapter;
+import Model.SongAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class homeFragment extends Fragment {
     View view;
-
-
-    Context context;
-
     public homeFragment() {
         // Required empty public constructor
     }
@@ -52,14 +49,14 @@ public class homeFragment extends Fragment {
             }
         });
         Database db = new Database(getActivity());
-//        ArrayList<Song> songs = db.getAllSong();
+        ArrayList<Song> songs = db.getAllSong();
         RecyclerView rcv = view.findViewById(R.id.rcv_Song);
-
-//        SongAdapter adapter = new SongAdapter(songs);
-//        rcv.setAdapter(adapter);
+        SongAdapter adapter = new SongAdapter(getActivity(), songs);
+        rcv.setAdapter(adapter);
         rcv.hasFixedSize();
         rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+        rcv.addItemDecoration(itemDecoration);
         return view;
     }
 
