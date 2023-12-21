@@ -31,5 +31,4 @@ public class libFragment extends Fragment {
         return view;
     }
 
-
 }
