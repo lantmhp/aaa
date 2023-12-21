@@ -14,8 +14,8 @@ import com.landz.android.databinding.ActivityListSongInAlbumBinding;
 
 import java.util.ArrayList;
 
-import Model.Song;
-import Model.SongAdapter;
+import com.landz.android.Model.Song;
+import com.landz.android.Model.SongAdapter;
 
 public class List_song_in_album extends AppCompatActivity {
     ArrayList<Song> songs;

@@ -8,6 +8,7 @@
     android:background="@color/black"
     tools:context=".activity.MainActivity">
 
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/fragment"
         android:layout_width="match_parent"

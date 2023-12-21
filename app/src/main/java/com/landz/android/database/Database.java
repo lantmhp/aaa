@@ -1,29 +1,19 @@
 package com.landz.android.database;
-
-import static android.provider.MediaStore.Audio.AudioColumns.ALBUM_ID;
-import static android.provider.MediaStore.Audio.AudioColumns.ARTIST_ID;
-
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
+
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-import android.widget.Toast;
+
 
 import androidx.annotation.Nullable;
 
-import com.landz.android.activity.List_song_in_album;
-import com.landz.android.activity.play_music;
+import com.landz.android.Model.Song;
+import com.landz.android.Model.album;
+
 
 import java.util.ArrayList;
-
-import Model.Artist;
-import Model.Song;
-import Model.album;
 
 
 public class Database extends SQLiteOpenHelper {

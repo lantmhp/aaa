@@ -15,14 +15,13 @@ import android.view.View;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import com.landz.android.Model.Song;
 import com.landz.android.R;
 import com.landz.android.database.Database;
 import com.landz.android.databinding.ActivityPlayMusicBinding;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-import Model.Song;
 
 public class play_music extends AppCompatActivity {
 
@@ -77,10 +76,7 @@ public class play_music extends AppCompatActivity {
                 binding.next.performClick();
             }
         });
-//        int audiosesssionId = mediaPlayer.getAudioSessionId();
-//        if(audiosesssionId != -1){
-//            vi
-//        }
+
         binding.next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

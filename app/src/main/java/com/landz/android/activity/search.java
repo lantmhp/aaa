@@ -9,16 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.landz.android.Model.Song;
+import com.landz.android.Model.SongAdapter;
 import com.landz.android.R;
 import com.landz.android.database.Database;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import Model.Song;
-import Model.SongAdapter;
-import Model.itemSearch;
-import Model.itemSearchAdapter;
 
 public class search extends AppCompatActivity {
 

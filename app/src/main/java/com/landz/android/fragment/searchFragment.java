@@ -7,10 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.landz.android.R;
@@ -21,8 +19,8 @@ import com.landz.android.databinding.FragmentSearchBinding;
 
 import java.util.ArrayList;
 
-import Model.album;
-import Model.albumAdapter;
+import com.landz.android.Model.album;
+import com.landz.android.Model.albumAdapter;
 
 /**
  * A simple {@link Fragment} subclass.

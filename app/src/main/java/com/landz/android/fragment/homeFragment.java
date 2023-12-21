@@ -15,20 +15,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.landz.android.Model.Song;
+import com.landz.android.Model.SongAdapter;
 import com.landz.android.activity.Login;
 import com.landz.android.R;
 import com.landz.android.database.Database;
 
 import java.util.ArrayList;
 
-import Model.Song;
-import Model.SongAdapter;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class homeFragment extends Fragment {
     View view;
+    Context context;
     public homeFragment() {
         // Required empty public constructor
     }
