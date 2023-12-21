@@ -108,7 +108,12 @@ public class play_music extends AppCompatActivity {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        binding.next.performClick();
+                    }
+                });
             }
         });
         binding.prev.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +147,12 @@ public class play_music extends AppCompatActivity {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        binding.next.performClick();
+                    }
+                });
             }
         });
         binding.forward.setOnClickListener(new View.OnClickListener() {
